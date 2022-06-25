@@ -24,6 +24,7 @@
         <maven.compiler.target>18</maven.compiler.target>
         <nacos-discovery.version>2021.1</nacos-discovery.version>
         <nacos-config.version>2021.1</nacos-config.version>
+        <mysql-connector-java.version>8.0.29</mysql-connector-java.version>
         <laboratory-api.version>1.0.0-SNAPSHOT</laboratory-api.version>
     </properties>
 
@@ -58,6 +59,20 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
             <version>${nacos-config.version}</version>
+        </dependency>
+
+        <!-- MySQL -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector-java.version}</version>
+        </dependency>
+
+        <!-- 热部署支持依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <!-- laboratory api -->
