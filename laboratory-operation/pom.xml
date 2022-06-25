@@ -26,6 +26,7 @@
         <spring-cloud-starter-bootstrap.version>3.1.3</spring-cloud-starter-bootstrap.version>
         <nacos-discovery.version>2021.1</nacos-discovery.version>
         <nacos-config.version>2021.1</nacos-config.version>
+        <laboratory-utils.version>1.0.0-SNAPSHOT</laboratory-utils.version>
     </properties>
 
     <dependencies>
@@ -67,6 +68,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>com.newcore</groupId>
+            <artifactId>laboratory-utils</artifactId>
+            <version>${laboratory-utils.version}</version>
         </dependency>
     </dependencies>
 
