@@ -6,9 +6,9 @@
 <configuration scan="true" scanPeriod="12 second">
 
     <!--模块名称-->
-    <property name="MODULE_NAME" value="laboratory-trace-provider"/>
+    <property name="MODULE_NAME" value="laboratory-query-service"/>
     <!--日志文件存储的文件夹根路径-->
-    <property name="LOG_HOME" value="logs/laboratory/provider/laboratory-trace-provider"/>
+    <property name="LOG_HOME" value="logs/laboratory/consumer/laboratory-query-service"/>
     <!--当使用异步日志时，日志队列中存储的最大日志对象个数-->
     <property name="maxQueueSize" value="512"/>
     <!--数据日志的字符集-->
@@ -149,7 +149,7 @@
 
     <!--开发环境:打印控制台-->
     <springProfile name="dev">
-        <logger name="com.newcore.laboratory.trace.provider" level="debug"/>
+        <logger name="com.newcore.laboratory.query.service" level="debug"/>
     </springProfile>
 
     <root level="info">
