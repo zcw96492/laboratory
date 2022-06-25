@@ -75,7 +75,7 @@ public class CustomCommentGenerator implements CommentGenerator {
 
     @Override
     public void addFieldComment(Field field, IntrospectedTable introspectedTable) {
-        //TODO
+
     }
 
     /**
