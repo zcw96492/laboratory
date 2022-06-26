@@ -93,6 +93,9 @@
     </dependencies>
 
     <modules>
+        <module>laboratory-authentication-provider</module>
+        <module>laboratory-mail-provider</module>
+        <module>laboratory-sms-provider</module>
         <module>laboratory-trace-provider</module>
     </modules>
 
