@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -268,6 +270,76 @@ public class DateUtils {
         int result = end.get(Calendar.MONTH) - start.get(Calendar.MONTH);
         int month = (end.get(Calendar.YEAR) - start.get(Calendar.YEAR)) * 12;
         return Math.abs(month + result);
+    }
+
+    /**
+     * 计算年份差
+     * @param startDate 开始日期
+     * @param endDate 结束日期
+     * @return 年份差
+     */
+    public static Integer calculateYearMinus(Date startDate , Date endDate) throws ParseException {
+        if(startDate == null || endDate == null){
+            return 0;
+        }
+
+        String startDateStr = getFormatDateString(startDate,"yyyy-MM-dd").replaceAll("[\\/\\-\\.]","");
+        String endDateStr = getFormatDateString(endDate,"yyyy-MM-dd").replaceAll("[\\/\\-\\.]","");
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
+
+        Date beginDateFormat = df.parse(startDateStr);
+        Calendar beginCalendar = Calendar.getInstance();
+        beginCalendar.setTime(beginDateFormat);
+
+        Date endDateFormat = df.parse(endDateStr);
+        Calendar endCalendar = Calendar.getInstance();
+        endCalendar.setTime(endDateFormat);
+
+        int beginYear = beginCalendar.get(Calendar.YEAR);
+        int endYear = endCalendar.get(Calendar.YEAR);
+        int minusYear = endYear - beginYear;
+
+        int beginMonth = beginCalendar.get(Calendar.MONTH);
+        int endMonth = endCalendar.get(Calendar.MONTH);
+        int minusMonth = endMonth - beginMonth;
+
+        int beginDayOfMonth = beginCalendar.get(Calendar.DAY_OF_MONTH);
+        int endDayOfMonth = endCalendar.get(Calendar.DAY_OF_MONTH);
+        int minusDay = endDayOfMonth - beginDayOfMonth;
+
+        /* 判断起期与止期是否是闰年 */
+        String beginLeapYear = "N", endLeapYear = "N";
+        if(beginYear % 4 == 0 && beginYear% 100 != 0 || beginYear % 400 == 0){
+            beginLeapYear = "Y";
+        }
+        if(endYear % 4 == 0 && endYear% 100 != 0 || endYear % 400 == 0){
+            endLeapYear = "Y";
+        }
+
+        if("Y".equals(beginLeapYear) && beginMonth + 1 == 2 && beginDayOfMonth == 29 &&
+                "N".equals(endLeapYear) && endMonth + 1 == 3 && endDayOfMonth == 1){
+            /* TODO 起期为闰年的2月29号,止期为非闰年的3月1日,不处理 */
+        }else if((minusMonth < 0 || (minusMonth == 0 && minusDay < 0)) && (minusYear == 5 || minusYear == 10 || minusYear == 20)){
+            minusYear = minusYear - 1;
+        }else if((minusMonth > 0 || minusMonth == 0 && minusDay > 0) && (minusYear == 5 || minusYear == 10 || minusYear == 20)){
+            minusYear = minusYear + 1;
+        }
+        return minusYear;
+    }
+
+    /**
+     * 计算两个时间点的月份差
+     * @param signingDate 销售员签约日期
+     * @param currentDate 当前日期
+     */
+    public static void calculateMonthMinus(Date signingDate,Date currentDate){
+
+        LocalDateTime start = LocalDateTime.of(2023,1,1, 0, 0, 0);
+        LocalDateTime end = LocalDateTime.of(2023,1,15, 0, 0, 0);
+        Duration duration = Duration.between(start,end);
+        long minus = duration.toDays();
+        System.out.println("两个日期相隔的天数为:" + minus);
     }
 }
 
