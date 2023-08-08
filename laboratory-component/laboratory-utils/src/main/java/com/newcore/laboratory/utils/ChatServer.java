@@ -30,7 +30,7 @@ public class ChatServer {
 
     /**
      * 单例获取ChatServer对象
-     * @return 聊天服务器ChatServer对象
+     * @return 聊天服务端ChatServer对象
      */
     public synchronized static ChatServer getChatServerObject(){
         if(server == null){

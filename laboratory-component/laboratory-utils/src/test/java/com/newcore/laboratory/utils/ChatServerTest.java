@@ -2,6 +2,9 @@ package com.newcore.laboratory.utils;
 
 import org.junit.Test;
 
+/**
+ * 聊天服务端测试类
+ */
 public class ChatServerTest {
 
     /**
@@ -9,7 +12,7 @@ public class ChatServerTest {
      */
     @Test
     public void test_start(){
-        ChatServer chatServerObject = ChatServer.getChatServerObject();
-        chatServerObject.start();
+        ChatServer server = ChatServer.getChatServerObject();
+        server.start();
     }
 }
